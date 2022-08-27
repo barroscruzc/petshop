@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="ordem_servico")
 public class OrdemServico {
@@ -22,6 +24,7 @@ public class OrdemServico {
 	
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
+	@JsonIgnoreProperties("animais")
 	private Cliente cliente;
 	
 	@Column(name="valor")
