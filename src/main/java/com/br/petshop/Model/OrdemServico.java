@@ -1,6 +1,8 @@
 package com.br.petshop.Model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -23,24 +26,27 @@ public class OrdemServico {
 	private Integer codigo;
 	
 	@ManyToOne
-	@JoinColumn(name="cliente_id")
+	@JoinColumn(name="cliente_id", nullable = false)
 	@JsonIgnoreProperties("animais")
 	private Cliente cliente;
 	
-	@Column(name="valor")
+	@Column(name="valor", nullable = false)
 	private BigDecimal valor;
 	
-	@Column(name="data")
-	private String data;
+	@Column(name="data", nullable = false)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone="GMT")
+	private LocalDate data;
 	
-	@Column(name="descricao")
+	@Column(name="descricao", length=100)
 	private String descricao;
 	
-	@Column(name="hora_entrada")
-	private String hora_entrada;
+	@Column(name="hora_entrada", nullable = false)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone="GMT")
+	private LocalTime hora_entrada;
 	
 	@Column(name="hora_retirada")
-	private String hora_retirada;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone="GMT")
+	private LocalTime hora_retirada;
 	
 	@ManyToOne
 	@JoinColumn(name="animal_id")
@@ -70,27 +76,27 @@ public class OrdemServico {
 		this.valor = valor;
 	}
 
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
-	public String getHora_entrada() {
+	public LocalTime getHora_entrada() {
 		return hora_entrada;
 	}
 
-	public void setHora_entrada(String hora_entrada) {
+	public void setHora_entrada(LocalTime hora_entrada) {
 		this.hora_entrada = hora_entrada;
 	}
 
-	public String getHora_retirada() {
+	public LocalTime getHora_retirada() {
 		return hora_retirada;
 	}
 
-	public void setHora_retirada(String hora_retirada) {
+	public void setHora_retirada(LocalTime hora_retirada) {
 		this.hora_retirada = hora_retirada;
 	}
 

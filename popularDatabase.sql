@@ -20,18 +20,18 @@ desc ordem_servico;
 select * from ordem_servico;
 insert into ordem_servico (codigo, data, descricao, hora_entrada, hora_retirada, valor, animal_id, cliente_id) 
 values 
-(null, "26-08-2022", "Banho e tosa completa", "15:30", "17:00", 35.00, 1, 1); 
+(null, '2022-08-26', "Banho e tosa completa", "15:30", "17:00", 35.00, 1, 1); 
  
 insert into ordem_servico (codigo, data, descricao, hora_entrada, hora_retirada, valor, animal_id, cliente_id) 
 values 
-(null, "26-08-2022", "Banho", "11:30", "13:00", 20.00, 2, 2); 
+(null, "2022-08-26", "Banho", "11:30", "13:00", 20.00, 2, 2); 
 
 insert into ordem_servico (codigo, data, descricao, hora_entrada, hora_retirada, valor, animal_id, cliente_id) 
 values 
-(null, "26-08-2022", "Banho e tosa higiênica", "12:30", "14:00", 30.00, 3, 3); 
+(null, "2022-08-26", "Banho e tosa higiênica", "12:30", "14:00", 30.00, 3, 3); 
 
 insert into ordem_servico (codigo, data, descricao, hora_entrada, hora_retirada, valor, animal_id, cliente_id) 
 values 
-(null, "26-08-2022", "Corte de unhas", "15:30", "16:00", 15.00, 4, 4); 
+(null, "2022-08-26", "Corte de unhas", "15:30", "16:00", 15.00, 4, 4); 
 
 
