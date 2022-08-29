@@ -1,6 +1,6 @@
 create database petshop;
-drop database petshop;
 use petshop;
+
 desc cliente;
 select * from cliente;
 insert into cliente (id, nome, telefone) values (null, "Ana Maria", "21 99999-999");
