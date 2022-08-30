@@ -44,12 +44,12 @@ public class OrdemServico {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone="GMT")
 	private LocalTime hora_entrada;
 	
-	@Column(name="hora_retirada")
+	@Column(name="hora_retirada", nullable=false)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone="GMT")
 	private LocalTime hora_retirada;
 	
 	@ManyToOne
-	@JoinColumn(name="animal_id")
+	@JoinColumn(name="animal_id", nullable=false)
 	private Animal animal;
 
 	public Integer getCodigo() {

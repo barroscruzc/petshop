@@ -22,10 +22,10 @@ public class Cliente {
 	@Column(name="id")
 	private Integer id;
 	
-	@Column(name="nome", length = 100)
+	@Column(name="nome", length = 100, nullable=false)
 	private String nome;
 	
-	@Column(name = "telefone")
+	@Column(name = "telefone", length=13, nullable=false)
 	private String telefone;
 	
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)

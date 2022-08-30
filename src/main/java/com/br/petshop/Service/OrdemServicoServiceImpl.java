@@ -17,20 +17,17 @@ public class OrdemServicoServiceImpl implements IOrdemServicoService{
 	
 	@Override
 	public OrdemServico salvar(OrdemServico novo) {
-		// TODO Auto-generated method stub
 		return repo.save(novo);
 	}
 
 	@Override
 	public OrdemServico buscar(Integer id) {
-		// TODO Auto-generated method stub
 		return repo.findById(id).orElse(null);
 	}
 
 	@Override
 	public List<OrdemServico> listar() {
-		// TODO Auto-generated method stub
-		return (ArrayList<OrdemServico>)repo.findAll();
+		return (ArrayList<OrdemServico>)repo.listar();
 	}
 
 }

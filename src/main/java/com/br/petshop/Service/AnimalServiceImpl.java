@@ -16,25 +16,21 @@ public class AnimalServiceImpl implements IAnimalService {
 	
 	@Override
 	public Animal salvar(Animal novo) {
-		// TODO Auto-generated method stub
 		return repo.save(novo);
 	}
 
 	@Override
 	public Animal buscar(Integer id) {
-		// TODO Auto-generated method stub
 		return repo.findById(id).orElse(null);
 	}
 
 	@Override
 	public ArrayList<Animal> listar() {
-		// TODO Auto-generated method stub
 		return (ArrayList<Animal>)repo.findAll();
 	}
 
 	@Override
 	public void excluir(Integer id) {
-		// TODO Auto-generated method stub
 		repo.deleteById(id);
 	}
 	
