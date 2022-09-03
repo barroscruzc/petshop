@@ -1,0 +1,1 @@
+curl --location --request DELETE 'localhost:8080/petshop/animais/5'
