@@ -1,0 +1,99 @@
+@use '../global-variables.scss' as *;
+
+.layout {
+    header {
+        background-color: $primary-color;
+        color: $secondary-color;
+        margin-top: 0;
+        border-radius: 0 0 2rem 2rem;
+        padding: 1rem;
+
+        position: relative;
+        width: 100vw;
+
+        h1 {
+            color: $accent-color;
+            display: block;
+            font-size: 2rem;
+            margin: 0 auto;
+            text-align: center;
+            font-family: $title;
+        }
+
+        ul {
+
+            list-style-type: none;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            text-decoration: underline;
+
+            width: 100%;
+            margin: 0;
+            padding: 0;
+
+            li {
+                display: inline-block;
+                margin: 0 1rem;
+                font-size: 1rem;
+                font-family: $mono;
+
+                a {
+                    color: $secondary-color;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: $accent-color;
+                    }
+                }
+            }
+        }
+    }
+
+    main {
+        padding: 1rem;
+        height: 70vh;
+    }
+
+    footer {
+        display: block;
+        width: 100vw;
+        margin: 0;
+
+        padding: 1rem;
+        background-color: $primary-color;
+        color: $secondary-color;
+        border-radius: 2rem;
+
+        p {
+            font-size: 1.5rem;
+            display: block;
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            font-family: $mono;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            width: 30%;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+            padding: 0;
+
+            a {
+                img {
+                    width: 2rem;
+                    height: 2rem;
+                }
+
+                margin: 0 1rem;
+            }
+        }
+
+
+    }
+}
