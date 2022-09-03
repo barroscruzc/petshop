@@ -51,4 +51,7 @@ baixe as dependências do projeto com o comando `./mvnw clean install`
 
 Para rodar o projeto, execute o comando `./mvnw spring-boot:run` no terminal.
 
+### **Eclipse** ou **IntelliJ**
+Para usar o o projeto no Eclipse ou IntelliJ, basta importar o projeto como um projeto Maven. As dependências serão baixadas automaticamente.
+
 
