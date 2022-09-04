@@ -1,58 +1,52 @@
-package com.br.petshop.Model;
+package com.br.petshop.Products;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
+import com.br.petshop.Model.OrdemServico;
+import com.br.petshop.Model.Animal;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonMerge;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
-@Table(name = "ordem_servico")
-public class OrdemServico {
+public class OrdemServicoProduct {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigo")
+    @JsonProperty("codigo")
     private Integer codigo;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id", nullable = false)
-    private Cliente cliente;
+    @JsonProperty("cliente")
+    private ClienteProduct cliente;
 
-    @Column(name = "valor", nullable = false)
+    @JsonProperty("valor")
     private BigDecimal valor;
 
-    @Column(name = "data", nullable = false)
+    @JsonProperty("data")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "GMT")
     private LocalDate data;
 
-    @Column(name = "descricao", length = 100)
+    @JsonProperty("descricao")
     private String descricao;
 
-    @Column(name = "hora_entrada", nullable = false)
+    @JsonProperty("hora_entrada")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "GMT")
     private LocalTime hora_entrada;
 
-    @Column(name = "hora_retirada", nullable = false)
+    @JsonProperty("hora_retirada")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "GMT")
     private LocalTime hora_retirada;
 
-    @ManyToOne
-    @JoinColumn(name = "animal_id", nullable = false)
+    @JsonProperty("animal")
     private Animal animal;
 
-    public Animal getAnimal() {
-        return animal;
+    public OrdemServicoProduct(OrdemServico ordemS) {
+        this.codigo = ordemS.getCodigo();
+        this.cliente = new ClienteProduct(ordemS.getCliente());
+        this.valor = ordemS.getValor();
+        this.data = ordemS.getData();
+        this.descricao = ordemS.getDescricao();
+        this.hora_entrada = ordemS.getHora_entrada();
+        this.hora_retirada = ordemS.getHora_retirada();
+        this.animal = ordemS.getAnimal();
     }
 
     public Integer getCodigo() {
@@ -63,11 +57,11 @@ public class OrdemServico {
         this.codigo = codigo;
     }
 
-    public Cliente getCliente() {
+    public ClienteProduct getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(ClienteProduct cliente) {
         this.cliente = cliente;
     }
 

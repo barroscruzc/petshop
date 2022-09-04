@@ -1,36 +1,33 @@
-package com.br.petshop.Model;
+package com.br.petshop.Products;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
+import com.br.petshop.Model.Animal;
+import com.br.petshop.Model.Cliente;
 import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
-@Table(name = "cliente")
-public class Cliente {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public class ClienteProduct {
+
+    @JsonProperty("id")
     private Integer id;
 
-    @Column(name = "nome", length = 100, nullable = false)
+    @JsonProperty("nome")
     private String nome;
 
-    @Column(name = "telefone", length = 13, nullable = false)
+    @JsonProperty("telefone")
     private String telefone;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
     @JsonIncludeProperties("id")
     private List<Animal> animais;
+
+    public ClienteProduct(Cliente cliente) {
+        this.id = cliente.getId();
+        this.nome = cliente.getNome();
+        this.telefone = cliente.getTelefone();
+        this.animais = cliente.getAnimais();
+    }
 
     public Integer getId() {
         return id;

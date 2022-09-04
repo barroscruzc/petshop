@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.petshop.Model.Animal;
+import com.br.petshop.Products.AnimalProduct;
 import com.br.petshop.Service.IAnimalService;
 
 @RestController
@@ -26,32 +27,33 @@ public class AnimalController {
 	private IAnimalService service;
 	
 	@GetMapping("/animais/{id}")
-	public ResponseEntity<Animal> buscar(@PathVariable("id") Integer id){
+	public ResponseEntity<AnimalProduct> buscar(@PathVariable("id") Integer id){
 		Animal animal = service.buscar(id);
-		if (animal != null) {
-			return ResponseEntity.ok(animal);
-		}
-		return ResponseEntity.notFound().build();
+		AnimalProduct animalProduct = new AnimalProduct(animal);
+        return ResponseEntity.ok().body(animalProduct);
 	}
 	
 	@GetMapping("/animais")
-	public ArrayList<Animal> listar(){
-		return (ArrayList<Animal>) service.listar();
+	public ArrayList<AnimalProduct> listar(){
+		ArrayList<Animal> animais = service.listar();
+        ArrayList<AnimalProduct> animaisProduct = new ArrayList<AnimalProduct>();
+        animais.forEach(animal -> {
+            animaisProduct.add(new AnimalProduct(animal));
+        });
+        return animaisProduct;
 	}
 	
 	@PostMapping("/animais")
-	public ResponseEntity<Animal> novo(@RequestBody Animal animal){
-		Animal pet = service.salvar(animal);
-		if(pet != null) {
-			return ResponseEntity.ok(pet);
-		}
-		return ResponseEntity.badRequest().build();
+	public ResponseEntity<AnimalProduct> novo(@RequestBody Animal animal){
+		Animal animalSalvo = service.salvar(animal);
+        AnimalProduct animalProduct = new AnimalProduct(animalSalvo);
+        return ResponseEntity.ok().body(animalProduct);
 	}
 	
 	@PutMapping("/animais/{id}")
 	public ResponseEntity<Animal> atualizado(@PathVariable("id") Integer id, @RequestBody Animal animal){
 		Animal pet = service.buscar(id);
-		if(pet != null) {
+		if(pet != null) { // Novo animal
 			pet.setCliente(animal.getCliente());
 			pet.setIdade(animal.getIdade());
 			pet.setNome(animal.getNome());
