@@ -99,12 +99,12 @@
     }
 }
 
-.lista{
+.lista {
     ul {
         width: 90%;
         height: fit-content;
         margin: 0 auto;
-        
+
         list-style-type: none;
 
         display: flex;
@@ -115,20 +115,22 @@
         overflow-x: auto;
         overflow-y: hidden;
 
-        &::-webkit-scrollbar {
-            background: $secondary-color;
-        }
+        // desktop
+        @media (min-width: 1024px) {
+            &::-webkit-scrollbar {
+                background: $secondary-color;
+            }
 
-        &::-webkit-scrollbar-thumb {
-            background: $accent-color;
-            border-radius: 0.5em;
+            &::-webkit-scrollbar-thumb {
+                background: $accent-color;
+                border-radius: 0.5em;
+            }
         }
-
 
         li {
             width: 40%;
             height: fit-content;
-            
+
             margin: 0 0.5em;
 
             font-size: 1.5rem;
@@ -143,7 +145,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            button {            
+
+            button {
                 border-radius: 0.2em;
                 background: $accent-color;
                 color: $primary-color;
@@ -153,7 +156,8 @@
             }
         }
     }
-    p{
+
+    p {
         font-size: 1rem;
         font-family: $mono;
         color: $primary-color;
