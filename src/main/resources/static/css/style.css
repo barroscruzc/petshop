@@ -1,3 +1,8 @@
 .margin-soft{
     margin: 10px auto;
 }
+
+#login-page {
+    background-image: url('../images/pexels-anna-bondarenko-11380194.jpg');
+    background-size: cover;
+}
