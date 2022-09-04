@@ -1,0 +1,165 @@
+@use '../global-variables.scss' as *;
+
+.titulo {
+    color: $primary-color;
+    display: block;
+    font-family: $title;
+    font-size: 2.5rem;
+    margin: 0 auto;
+    text-align: center;
+    text-shadow: 0 0 0.5rem $secondary-color;
+}
+
+.erro {
+    color: $accent-color;
+    display: block;
+    font-family: $mono;
+    font-size: 1.5rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.container {
+    width: 100%;
+    height: fit-content;
+    padding: 1em;
+    margin: 1em;
+
+    border-radius: 1em;
+    box-shadow: 0 0 0.5em $primary-color;
+
+    font-family: $text;
+    color: $primary-color;
+    background: $secondary-color;
+
+    // desktop
+    @media (min-width: 1024px) {
+        width: 50%;
+        margin: 1em auto;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        font-family: $title;
+        color: $accent-color;
+        text-shadow: 0 0 0.5rem $secondary-color;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+
+    label {
+        font-size: 1.5rem;
+        font-family: $title;
+        color: $primary-color;
+        display: block;
+        width: 80%;
+        text-align: left;
+    }
+
+    input {
+        width: 80%;
+        height: 2em;
+        margin: 0.5em;
+        padding: 0.5em;
+        border: 0;
+        border-radius: 0.5em;
+        background: $secondary-color;
+        color: $primary-color;
+        font-family: $mono;
+        font-size: 1rem;
+        border: 0.1em solid $primary-color;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0.5rem $accent-color;
+        }
+    }
+
+    button {
+        width: 50%;
+        height: 2em;
+        margin: 0.1em;
+        padding: 0.1em;
+        border: 0;
+        border-radius: 0.5em;
+        background: $accent-color;
+        color: $primary-color;
+        font-family: $text;
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+.lista{
+    ul {
+        width: 90%;
+        height: fit-content;
+        margin: 0 auto;
+        
+        list-style-type: none;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        &::-webkit-scrollbar {
+            background: $secondary-color;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $accent-color;
+            border-radius: 0.5em;
+        }
+
+
+        li {
+            width: 40%;
+            height: fit-content;
+            
+            margin: 0 0.5em;
+
+            font-size: 1.5rem;
+            font-family: $mono;
+
+            border: 0.1em solid $primary-color;
+            border-radius: 0.5em;
+
+            background: $secondary-color;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            button {            
+                border-radius: 0.2em;
+                background: $accent-color;
+                color: $primary-color;
+                font-family: $text;
+                font-size: 2rem;
+                text-align: center;
+            }
+        }
+    }
+    p{
+        font-size: 1rem;
+        font-family: $mono;
+        color: $primary-color;
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin: 0em;
+    }
+}
