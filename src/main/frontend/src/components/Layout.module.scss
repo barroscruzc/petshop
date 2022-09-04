@@ -2,9 +2,9 @@
 
 .layout {
     header {
-        background-color: $primary-color;
-        color: $secondary-color;
+        background-color: $secondary-color;
         margin-top: 0;
+        border-bottom: 0.5rem solid $primary-color;
         border-radius: 0 0 2rem 2rem;
         padding: 1rem;
 
@@ -14,10 +14,11 @@
         h1 {
             color: $accent-color;
             display: block;
-            font-size: 2rem;
-            margin: 0 auto;
+            font-size: 4rem;
+            margin: 10px auto;
             text-align: center;
             font-family: $title;
+            text-decoration-line: underline;
         }
 
         ul {
@@ -27,24 +28,25 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            text-decoration: underline;
+            justify-content: center;
 
             width: 100%;
             margin: 0;
             padding: 0;
 
             li {
-                display: inline-block;
                 margin: 0 1rem;
-                font-size: 1rem;
+                font-size: 2rem;
                 font-family: $mono;
-
                 a {
-                    color: $secondary-color;
+                    color: $primary-color;
                     text-decoration: none;
-
+                    border: 0.2rem solid $primary-color;
+                    border-radius: 0.5rem;
+                    padding: 0.5rem;
                     &:hover {
                         color: $accent-color;
+                        border: 0.2rem solid $accent-color;
                     }
                 }
             }
@@ -62,9 +64,10 @@
         margin: 0;
 
         padding: 1rem;
-        background-color: $primary-color;
-        color: $secondary-color;
+        background-color: $secondary-color;
+        color: $accent-color;
         border-radius: 2rem;
+        border-top: 0.5rem solid $primary-color;
 
         p {
             font-size: 1.5rem;

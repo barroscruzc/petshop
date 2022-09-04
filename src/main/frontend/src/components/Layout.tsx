@@ -13,13 +13,13 @@ export default ({ children }: { children: React.ReactNode }) => (
                     </Link>
                 </li>
                 <li>
-                    <Link to="/pets">
-                        Cadastro de Pets
+                    <Link to="/owners">
+                        Donos
                     </Link>
                 </li>
                 <li>
-                    <Link to="/owners">
-                        Cadastro de Donos
+                    <Link to="/pets">
+                        Pets
                     </Link>
                 </li>
                 <li>
