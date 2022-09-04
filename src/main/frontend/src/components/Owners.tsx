@@ -1,4 +1,5 @@
 import * as React from "react";
+import { fetchClientes } from "../util";
 import { Cliente } from "../types";
 import style from "./Page.module.scss";
 
@@ -12,11 +13,9 @@ export default () => {
     const [nome, setNome] = React.useState<string>("");
     const [telefone, setTelefone] = React.useState<string>("");
 
-    const fetchClientes = async () => {
+    const getClientes = async () => {
         try {
-            const response = await fetch("http://localhost:8080/petshop/clientes");
-            const clientes = await response.json();
-            setClientes(clientes);
+            setClientes(await fetchClientes());
         }
         catch (e: any) {
             setError(e.message);
@@ -27,7 +26,7 @@ export default () => {
         //set page title
         document.title = "PetShop - Clientes";
         //fetch data
-        fetchClientes().then(() => setLoading(false));
+        getClientes().then(() => setLoading(false));
     }, []);
 
     const handleClienteSelecionado = (cliente: Cliente) => {
@@ -35,8 +34,7 @@ export default () => {
             setClienteSelecionado(null);
             setNome("");
             setTelefone("");
-        }
-        else {
+        } else {
             setClienteSelecionado(cliente);
             setNome(cliente.nome);
             setTelefone(cliente.telefone);
@@ -55,7 +53,7 @@ export default () => {
                 body: JSON.stringify({ nome, telefone })
             });
             if (response.ok) {
-                fetchClientes();
+                getClientes();
                 setClienteSelecionado(null);
                 setNome("");
                 setTelefone("");
@@ -71,7 +69,7 @@ export default () => {
                 body: JSON.stringify({ nome, telefone })
             });
             if (response.ok) {
-                fetchClientes();
+                getClientes();
                 setNome("");
                 setTelefone("");
             }
@@ -89,7 +87,7 @@ export default () => {
                     loading ?
                         <h1>Carregando...</h1>
                         :
-                        <div>
+                        <>
                             {
                                 clientes.length > 0 ?
                                     (<>
@@ -109,7 +107,7 @@ export default () => {
                                                             </p>
                                                             <button onClick={() => handleClienteSelecionado(cliente)}>
                                                                 {
-                                                                    clienteSelecionado?.id === cliente.id ? "desselecionar" : "Selecionar"
+                                                                    clienteSelecionado?.id === cliente.id ? "Desselecionar" : "Selecionar"
                                                                 }
                                                             </button>
                                                         </li>
@@ -120,7 +118,7 @@ export default () => {
                                     </>) :
                                     (<h2>Nenhum cliente cadastrado</h2>)
                             }
-                        </div>
+                        </>
                 }
             </div>
 
@@ -128,7 +126,7 @@ export default () => {
                 <h2>
                     {
                         clienteSelecionado ?
-                            `Editando cliente : ${clienteSelecionado.nome}` :
+                            `Editando Cliente: ${clienteSelecionado.nome}` :
                             "Cadastre um novo cliente"
                     }
                 </h2>
@@ -158,6 +156,26 @@ export default () => {
                     <div className={style.formGroup}>
                         <button type="submit">Salvar</button>
                     </div>
+                    {
+                        clienteSelecionado &&
+                        <div className={style.formGroup}>
+                            <button type="button" onClick={
+                                async (e: React.MouseEvent<HTMLButtonElement>) => {
+                                    e.preventDefault();
+                                    const response = await fetch(`http://localhost:8080/petshop/clientes/${clienteSelecionado.id}`, {
+                                        method: "DELETE"
+                                    });
+                                    if (response.ok) {
+                                        getClientes();
+                                        setClienteSelecionado(null);
+                                        setNome("");
+                                        setTelefone("");
+                                    } else {
+                                        setError("Erro ao deletar cliente");
+                                    }
+                                }}>Excluir</button>
+                        </div>
+                    }
                 </form>
             </div>
         </>

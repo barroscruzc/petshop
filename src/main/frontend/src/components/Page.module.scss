@@ -47,6 +47,17 @@
         margin: 0 auto;
         text-align: center;
     }
+
+    p{
+        font-size: 1rem;
+        font-family: $text;
+        color: $primary-color;
+        text-shadow: 0 0 0.5rem $secondary-color;
+        display: block;
+        margin: 0 auto;
+        margin-top: 1em;
+        text-align: center;
+    }
 }
 
 .formGroup {

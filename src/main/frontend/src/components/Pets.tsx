@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Animal, Cliente } from "../types";
 import style from "./Page.module.scss";
-
+import { fetchAnimais, fetchClientes } from "../util";
 
 export default () => {
     const [animais, setAnimais] = React.useState<Animal[]>([]);
@@ -16,22 +16,18 @@ export default () => {
 
     const [animalSelecionado, setAnimalSelecionado] = React.useState<Animal | null>(null);
 
-    const fetchAnimais = async () => {
+    const GetAnimais = async () => {
         try {
-            const response = await fetch("http://localhost:8080/petshop/animais");
-            const animais = await response.json();
-            setAnimais(animais);
+            setAnimais(await fetchAnimais());
         }
         catch (e: any) {
             setError(e.response.data.message);
         }
     }
 
-    const fetchClientes = async () => {
+    const getClientes = async () => {
         try {
-            const response = await fetch("http://localhost:8080/petshop/clientes");
-            const clientes = await response.json();
-            setClientes(clientes);
+            setClientes(await fetchClientes());
         }
         catch (e: any) {
             setError(e.message);
@@ -65,7 +61,7 @@ export default () => {
                 },
                 body: JSON.stringify({ nome, idade, peso, cliente_id })
             }).then(() => {
-                fetchAnimais();
+                GetAnimais();
                 setAnimalSelecionado(null);
                 setNome("");
                 setIdade(0);
@@ -82,7 +78,7 @@ export default () => {
                 },
                 body: JSON.stringify({ nome, idade, peso, cliente_id })
             }).then(() => {
-                fetchAnimais();
+                GetAnimais();
                 setNome("");
                 setIdade(0);
                 setPeso(0);
@@ -96,8 +92,9 @@ export default () => {
         //set page title
         document.title = "PetShop - Animais";
         //fetch data
-        fetchAnimais().then(() => setLoading(false));
-        fetchClientes();
+        getClientes();
+        GetAnimais().then(() => setLoading(false));
+
     }, []);
 
     return (
@@ -129,7 +126,10 @@ export default () => {
                                                             Peso: {animal.peso} kg
                                                         </p>
                                                         <p>
-                                                            Dono do Pet: {clientes.find(cliente => cliente.id === animal.cliente_id)?.nome}
+                                                            Dono do Pet: {clientes.find(cliente => {
+                                                                console.log(cliente.id, animal.cliente_id);
+                                                                return cliente.id === animal.cliente_id
+                                                            })?.nome}
                                                         </p>
                                                         <button onClick={() => handleSelecionarAnimal(animal)}>
                                                             {
@@ -230,7 +230,7 @@ export default () => {
                                         method: "DELETE"
                                     })
                                     if (response.ok) {
-                                        fetchAnimais();
+                                        GetAnimais();
                                         setAnimalSelecionado(null);
                                         setNome("");
                                         setIdade(0);

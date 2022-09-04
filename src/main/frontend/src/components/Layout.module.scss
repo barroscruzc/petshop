@@ -5,8 +5,8 @@
         background-color: $secondary-color;
         margin-top: 0;
         border-bottom: 0.5rem solid $primary-color;
-        border-radius: 0 0 2rem 2rem;
-        padding: 1rem;
+        border-radius: 0 0 2em 2em;
+        padding: 0 0 1rem 0;
 
         position: relative;
         width: 100vw;
@@ -15,7 +15,7 @@
             color: $accent-color;
             display: block;
             font-size: 4rem;
-            margin: 10px auto;
+            margin: 0px auto 10px auto;
             text-align: center;
             font-family: $title;
             text-decoration-line: underline;
@@ -35,8 +35,8 @@
             padding: 0;
 
             li {
-                margin: 0 1rem;
-                font-size: 2rem;
+                margin: 0 .5rem;
+                font-size: 1rem;
                 font-family: $mono;
                 a {
                     color: $primary-color;
@@ -55,22 +55,23 @@
 
     main {
         padding: 1rem;
-        height: 70vh;
+        height: fit-content;
+        min-height: 60vh;
     }
 
     footer {
-        display: block;
+        position: relative;
         width: 100vw;
         margin: 0;
 
-        padding: 1rem;
+        padding: .1rem;
         background-color: $secondary-color;
         color: $accent-color;
-        border-radius: 2rem;
+        border-radius: 2em 2em 0 0;
         border-top: 0.5rem solid $primary-color;
 
         p {
-            font-size: 1.5rem;
+            font-size: 1rem;
             display: block;
             margin: 0;
             width: 100%;
@@ -89,8 +90,8 @@
 
             a {
                 img {
-                    width: 2rem;
-                    height: 2rem;
+                    width: 1.5rem;
+                    aspect-ratio: 1/1;
                 }
 
                 margin: 0 1rem;
