@@ -10,13 +10,7 @@ curl --location --request PUT 'localhost:8080/petshop/animais/2' \
 }'
 
 curl --location --request PUT 'localhost:8080/petshop/clientes/6' \
---data-raw '{
-    "id": 1,
-    "nome": "Ana Maria",
-    "telefone": "21 99999-999",
-    "animais": [
-        {
-            "id": 1
+--data-raw '{"id": 1,"nome": "Ana Maria", "telefone": "21 99999-999", "animais": [{"id": 1
         }
     ]
 }'

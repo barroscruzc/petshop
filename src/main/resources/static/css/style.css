@@ -1,0 +1,28 @@
+
+
+.margin-soft{
+    margin: 10px auto;
+}
+
+#login-page {
+    background-image: url('../images/pexels-koolshooters-7683643.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-color: rgb(255, 191, 14);
+    position: sticky;
+    min-height: 600px;
+}
+
+#form-login {
+    height: 80vh;
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+    background-color: rgba(255, 255, 255, 0.534);
+    backdrop-filter: blur(30px);
+    max-height: 600px;
+}
+
+.logo-lg {
+    height: 150px;
+}
