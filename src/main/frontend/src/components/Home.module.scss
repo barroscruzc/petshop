@@ -1,42 +1,53 @@
 @use '../global-variables.scss' as *;
-.left{
-    float: left;
-    height: 100%;
-    img{
-        height: 100%;
-        width: auto;
-    }
-}
-.right{
-    float: right;
-    height: 100%;
-}
 
-.right, .left {
-    height: 50vh;
-    display: flex;
-    flex-direction: column;
+
+.content {
+    width: 80vw;
     margin: 0 auto;
-
-    width: 90%;
 
     //Desktop
     @media (min-width: 1024px) {
-        display: inherit;
-        width: 40%;
+        width: 50vw;
     }
 
-    h2{
+    h2 {
         font-size: 5rem;
         font-family: $title;
         text-decoration-line: underline;
         color: $accent-color;
         margin: 1rem auto;
+        display: block;
+        text-align: center;
+
+        //desktop
+        @media (min-width: 1024px) {
+            font-size: 3rem;
+        }
     }
-    p{
+
+    p {
         font-family: $mono;
-        font-size: 3rem;
+        font-size: 2rem;
         margin: 1rem auto;
         padding: 0;
+
+        //desktop
+        @media (min-width: 1024px) {
+            font-size: 1rem;
+        }
     }
+
+    img {
+        height: 500px;
+        width: auto;
+        float:left;
+
+        //Desktop
+        @media (max-width: 1024px) {
+            display: none !important;
+        }
+    }
+
+
+
 }

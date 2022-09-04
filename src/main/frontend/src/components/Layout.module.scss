@@ -13,7 +13,7 @@
 
         // desktop
         @media (min-width: 1024px) {
-            width: 50vw;
+            width: 80vw;
             margin: 0 auto;
         }
 
@@ -45,6 +45,11 @@
                 font-size: 3rem;
                 font-family: $mono;
 
+                // desktop
+                @media (min-width: 1024px) {
+                    font-size: 1rem;
+                }
+
                 a {
                     color: $primary-color;
                     text-decoration: none;
@@ -56,6 +61,7 @@
                         color: $accent-color;
                         border: 0.2rem solid $accent-color;
                     }
+                    
                 }
             }
         }
@@ -72,9 +78,10 @@
         width: 100vw;
         margin-top: auto;
         margin-bottom: 0;
+
         // desktop
         @media (min-width: 1024px) {
-            width: 50vw;
+            width: 80vw;
             margin: 0 auto;
         }
 
@@ -92,6 +99,11 @@
             width: 100%;
             text-align: center;
             font-family: $text;
+
+            // desktop
+            @media (min-width: 1024px) {
+                font-size: 2em;
+            }
         }
 
         .links {
@@ -103,14 +115,25 @@
             margin-bottom: 2rem;
             padding: 0;
 
+            // desktop
+            @media (min-width: 1024px) {
+                width: 30%;
+            }
+
             a {
                 img {
                     width: 3rem;
                     aspect-ratio: 1/1;
+
+                    // desktop
+                    @media (min-width: 1024px) {
+                        width: 2rem;
+                    }
                 }
 
                 margin: 0 1rem;
             }
+
         }
 
 

@@ -7,12 +7,10 @@ export default () => {
 
     return (
         <>
-            <div className={[style.left,"MobileHidden"].join(" ")}>
-                <img src="/images/Cachorinho.png" alt="Cachorinho" />
-            </div>
-            <div className={style.right}>
+            <div className={style.content}>
                 <h2>Sobre</h2>
                 <p>
+                <img src="/images/Cachorinho.png" alt="Cachorinho" />
                     PetShop é um sistema de gerenciamento de petshops.
                 </p>
                 <p>

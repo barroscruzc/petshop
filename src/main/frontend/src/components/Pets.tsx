@@ -116,23 +116,25 @@ export default () => {
                                             {
                                                 animais.map(animal => (
                                                     <li key={animal.id}>
-                                                        <p>
-                                                            Nome: {animal.nome}
-                                                        </p>
-                                                        <p>
-                                                            Idade: {animal.idade}
-                                                        </p>
-                                                        <p>
-                                                            Peso: {animal.peso} kg
-                                                        </p>
-                                                        <p>
-                                                            Dono do Pet: {animal.cliente.nome}
-                                                        </p>
-                                                        <button onClick={() => handleSelecionarAnimal(animal)}>
-                                                            {
-                                                                animalSelecionado?.id === animal.id ? "Desselecionar" : "Selecionar"
-                                                            }
-                                                        </button>
+                                                        <div className={style.card}>
+                                                            <p>
+                                                                Nome: {animal.nome}
+                                                            </p>
+                                                            <p>
+                                                                Idade: {animal.idade}
+                                                            </p>
+                                                            <p>
+                                                                Peso: {animal.peso} kg
+                                                            </p>
+                                                            <p>
+                                                                Dono: {animal.cliente.nome.substring(0, 20)}
+                                                            </p>
+                                                            <button onClick={() => handleSelecionarAnimal(animal)}>
+                                                                {
+                                                                    animalSelecionado?.id === animal.id ? "Desselecionar" : "Selecionar"
+                                                                }
+                                                            </button>
+                                                        </div>
                                                     </li>
                                                 ))
                                             }
@@ -186,11 +188,17 @@ export default () => {
                     </div>
                     <div className={style.formGroup}>
                         <label htmlFor="cliente">Dono do Pet</label>
-                            <div className={style.lista}>
-                                <ul>
-                                    {
-                                        clientes.map(cliente => (
-                                            <li key={cliente.id}>
+                        <div className={style.lista}
+                            style={{
+                                width: "90%",
+                                display: "block",
+                            }}>
+                            <ul>
+                                {
+                                    clientes.map(cliente => (
+                                        <li key={cliente.id}>
+                                            <div className={style.radioType}>
+                                                <label htmlFor={cliente.id.toString()}>{cliente.nome.substring(0, 15)}</label>
                                                 <input
                                                     type="radio"
                                                     id={cliente.id.toString()}
@@ -200,11 +208,11 @@ export default () => {
                                                     style={{ boxShadow: "none" }}
                                                     checked={cliente.id === clienteSelecionado?.id}
                                                 />
-                                                <label htmlFor={cliente.id.toString()}>{cliente.nome}</label>
-                                            </li>
-                                        ))
-                                    }
-                                </ul>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
                         </div>
                     </div>
                     <div className={style.formGroup}>

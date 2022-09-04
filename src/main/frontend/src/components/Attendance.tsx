@@ -11,7 +11,7 @@ export default () => {
     const [loading, setLoading] = React.useState<boolean>(true);
     const [error, setError] = React.useState<string>("");
 
-    const [id_cliente, setId_cliente] = React.useState<number>(0);
+    const [cliente, setCliente] = React.useState<null | Cliente>(null);
     const [id_animal, setId_animal] = React.useState<number>(0);
     const [valor, setValor] = React.useState<number>(0);
     const [data, setData] = React.useState<string>("");
@@ -53,6 +53,32 @@ export default () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
+        try {
+            const response = await fetch("http://localhost:8080/petshop/ordemServico", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    cliente_id: cliente?.id,
+                    valor: valor,
+                    data: data,
+                    descricao: descricao,
+                    hora_entrada: hora_entrada,
+                    hora_retirada: hora_retirada,
+                    animal_id: id_animal,
+                }),
+            });
+            if (response.status === 201) {
+                setOrdemServicoSelecionado(await response.json());
+            } else {
+                setError("Erro ao cadastrar atendimento");
+            }
+        }
+        catch (e: any) {
+            setError(e.message);
+        }
     }
 
     return (
@@ -96,56 +122,100 @@ export default () => {
                     </>}
             </div>
             <div className={style.container}>
-                <h2>{ordemServicoSelecionado ? "Editar" : "Adicionar"} Ordem de Serviço</h2>
+                <h2>{ordemServicoSelecionado ? "Editar" : "Adicionar"} Atendimento</h2>
                 <form onSubmit={handleSubmit}>
                     <div className={style.formGroup}>
                         <label htmlFor="id_cliente">Cliente</label>
-                        <select name="id_cliente" id="id_cliente" value={id_cliente} onChange={(e) => setId_cliente(Number(e.target.value))}>
-                            <option value="0">Selecione um cliente</option>
-                            {clientes.map((cliente) => (
-                                <option key={cliente.id} value={cliente.id}>{cliente.nome}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className={style.formGroup}>
-                        <label htmlFor="id_animal">Animal</label>
-                        <select name="id_animal" id="id_animal" value={id_animal} onChange={(e) => setId_animal(Number(e.target.value))}>
-                            <option value="0">Selecione um animal</option>
-                            {animais.map((animal) => (
-                                <option key={animal.id} value={animal.id}>{animal.nome}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className={style.formGroup}>
-                        <label htmlFor="valor">Valor</label>
-                        <input type="number" name="valor" id="valor" value={valor} onChange={(e) => setValor(Number(e.target.value))} />
-                    </div>
-                    <div className={style.formGroup}>
-                        <label htmlFor="data">Data</label>
-                        <input type="date" name="data" id="data" value={data} onChange={(e) => setData(e.target.value)} />
-                    </div>
-                    <div className={style.formGroup}>
-                        <label htmlFor="descricao">Descrição</label>
-                        <input type="text" name="descricao" id="descricao" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
-                    </div>
-                    <div className={style.formGroup}>
-                        <label htmlFor="hora_entrada">Hora de Entrada</label>
-                        <input type="time" name="hora_entrada" id="hora_entrada" value={hora_entrada} onChange={(e) => setHora_entrada(e.target.value)} />
-                    </div>
-                    <div className={style.formGroup}>
-                        <label htmlFor="hora_retirada">Hora de Retirada</label>
-                        <input type="time" name="hora_retirada" id="hora_retirada" value={hora_retirada} onChange={(e) => setHora_retirada(e.target.value)} />
-                    </div>
-                    <div className={style.formGroup}>
-                        <button type="submit">{ordemServicoSelecionado ? "Editar" : "Adicionar"}</button>
+                        <div className={style.lista}
+                            style={{
+                                width: "90%",
+                                display: "block",
+                            }}>
+                            <ul>
+                                {
+                                    clientes.map(elem => (
+                                        <li key={elem.id}>
+                                            <div className={style.radioType}>
+                                                <label htmlFor={elem.id.toString()}>{elem.nome}</label>
+                                                <input
+                                                    type="radio"
+                                                    id={elem.id.toString()}
+                                                    name="cliente"
+                                                    value={elem.id}
+                                                    onChange={e => setCliente(elem)}
+                                                    style={{ boxShadow: "none" }}
+                                                    checked={elem.id === cliente?.id}
+                                                />
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
                     </div>
                     {
-                        ordemServicoSelecionado &&
-                        <div className={style.formGroup}>
-                            <button type="button" onClick={() => {
-
-                            }}>Excluir</button>
-                        </div>
+                        (cliente && cliente?.animais?.length > 0) ?
+                            (
+                                <>
+                                    <div className={style.formGroup}>
+                                        <label htmlFor="id_animal">Animal</label>
+                                        <div className={style.lista}
+                                            style={{
+                                                width: "90%",
+                                                display: "block",
+                                            }}>
+                                            <ul>
+                                                {
+                                                    animais.filter(elem => elem.cliente.id === cliente.id).map(elem => (
+                                                        <li key={elem.id}>
+                                                            <div className={style.radioType}>
+                                                                <label htmlFor={elem.id.toString()}>{elem.nome.substring(0, 15)}</label>
+                                                                <input
+                                                                    type="radio"
+                                                                    id={elem.id.toString()}
+                                                                    name="animal"
+                                                                    value={elem.id}
+                                                                    onChange={e => setId_animal(elem.id)}
+                                                                    style={{ boxShadow: "none" }}
+                                                                    checked={elem.id === id_animal}
+                                                                />
+                                                            </div>
+                                                        </li>
+                                                    ))
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className={style.formGroup}>
+                                        <label htmlFor="valor">Valor</label>
+                                        <input type="number" name="valor" id="valor" value={valor} onChange={(e) => setValor(Number(e.target.value))} />
+                                    </div>
+                                    <div className={style.formGroup}>
+                                        <label htmlFor="data">Data</label>
+                                        <input type="date" name="data" id="data" value={data} onChange={(e) => setData(e.target.value)} />
+                                    </div>
+                                    <div className={style.formGroup}>
+                                        <label htmlFor="descricao">Descrição</label>
+                                        <input type="text" name="descricao" id="descricao" value={descricao} onChange={(e) => setDescricao(e.target.value)} />
+                                    </div>
+                                    <div className={style.formGroup}>
+                                        <label htmlFor="hora_entrada">Hora de Entrada</label>
+                                        <input type="time" name="hora_entrada" id="hora_entrada" value={hora_entrada} onChange={(e) => setHora_entrada(e.target.value)} />
+                                    </div>
+                                    <div className={style.formGroup}>
+                                        <label htmlFor="hora_retirada">Hora de Retirada</label>
+                                        <input type="time" name="hora_retirada" id="hora_retirada" value={hora_retirada} onChange={(e) => setHora_retirada(e.target.value)} />
+                                    </div>
+                                    <div className={style.formGroup}>
+                                        <button type="submit">{ordemServicoSelecionado ? "Editar" : "Adicionar"}</button>
+                                    </div>
+                                </>
+                            ) :
+                            (
+                                <h2>
+                                    Nem um cliente selecionado ou nenhum animal cadastrado para o cliente selecionado
+                                </h2>
+                            )
                     }
                 </form>
             </div>

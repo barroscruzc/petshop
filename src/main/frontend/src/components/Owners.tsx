@@ -96,20 +96,22 @@ export default () => {
                                                 {
                                                     clientes.map(cliente => (
                                                         <li key={cliente.id}>
-                                                            <p>
-                                                                ID: {cliente.id}
-                                                            </p>
-                                                            <p>
-                                                                Nome: {cliente.nome}
-                                                            </p>
-                                                            <p>
-                                                                Telefone: {cliente.telefone}
-                                                            </p>
-                                                            <button onClick={() => handleClienteSelecionado(cliente)}>
-                                                                {
-                                                                    clienteSelecionado?.id === cliente.id ? "Desselecionar" : "Selecionar"
-                                                                }
-                                                            </button>
+                                                            <div className={style.card}>
+                                                                <p>
+                                                                    ID: {cliente.id}
+                                                                </p>
+                                                                <p>
+                                                                    Nome: {cliente.nome}
+                                                                </p>
+                                                                <p>
+                                                                    Telefone: {cliente.telefone}
+                                                                </p>
+                                                                <button onClick={() => handleClienteSelecionado(cliente)}>
+                                                                    {
+                                                                        clienteSelecionado?.id === cliente.id ? "Desselecionar" : "Selecionar"
+                                                                    }
+                                                                </button>
+                                                            </div>
                                                         </li>
                                                     ))
                                                 }
