@@ -20,6 +20,9 @@ Criar uma API com Spring Boot para a empresa Pet(banho&tosa). Nessa aplicação 
   - valor 
   - hora_entrada
   - hora_retirada
+  
+## Documentação
+A documentação dos endpoints da API pode ser visualizada <a href="https://documenter.getpostman.com/view/21287524/VUxNSTdJ"> aqui </a>.
 
 ## Estrutura do banco de dados
 A imagem abaixo ilustra os relacionamentos entre as três tabelas do database.
