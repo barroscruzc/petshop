@@ -1,12 +1,3 @@
-
-type Animal = {
-    id: number;
-    nome: string;
-    idade: number;
-    peso: number;
-    cliente_id: number;
-}
-
 type Cliente = {
     id: number;
     nome: string;
@@ -14,10 +5,18 @@ type Cliente = {
     animais?: Animal[];
 };
 
+type Animal = {
+    id: number;
+    nome: string;
+    idade: number;
+    peso: number;
+    cliente: Cliente;
+}
+
 type OrdemServico = {
     codigo: number;
-    id_cliente: number;
-    id_animal: number;
+    cliente: Cliente;
+    animal: Animal;
     valor: number;
     data: string;
     descricao: string;

@@ -11,6 +11,12 @@
         position: relative;
         width: 100vw;
 
+        // desktop
+        @media (min-width: 1024px) {
+            width: 50vw;
+            margin: 0 auto;
+        }
+
         h1 {
             color: $accent-color;
             display: block;
@@ -36,14 +42,16 @@
 
             li {
                 margin: 0 .5rem;
-                font-size: 1rem;
+                font-size: 3rem;
                 font-family: $mono;
+
                 a {
                     color: $primary-color;
                     text-decoration: none;
                     border: 0.2rem solid $primary-color;
                     border-radius: 0.5rem;
                     padding: 0.5rem;
+
                     &:hover {
                         color: $accent-color;
                         border: 0.2rem solid $accent-color;
@@ -62,35 +70,42 @@
     footer {
         position: relative;
         width: 100vw;
-        margin: 0;
+        margin-top: auto;
+        margin-bottom: 0;
+        // desktop
+        @media (min-width: 1024px) {
+            width: 50vw;
+            margin: 0 auto;
+        }
 
         padding: .1rem;
         background-color: $secondary-color;
         color: $accent-color;
-        border-radius: 2em 2em 0 0;
         border-top: 0.5rem solid $primary-color;
+        border-bottom: 0.5rem solid $primary-color;
+
 
         p {
-            font-size: 1rem;
+            font-size: 5em;
             display: block;
             margin: 0;
             width: 100%;
             text-align: center;
-            font-family: $mono;
+            font-family: $text;
         }
 
         .links {
             display: flex;
             justify-content: space-between;
             flex-direction: row;
-            width: 30%;
+            width: 50%;
             margin: 0 auto;
             margin-bottom: 2rem;
             padding: 0;
 
             a {
                 img {
-                    width: 1.5rem;
+                    width: 3rem;
                     aspect-ratio: 1/1;
                 }
 

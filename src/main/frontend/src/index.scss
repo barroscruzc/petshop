@@ -4,5 +4,22 @@ body{
     margin: 0;
     padding: 0;
     font-size: 62.5%;
-    background-color: $secondary-color;
+    background-color: $page-background1;
+}
+
+.MobileHidden {
+    display: none;
+    //Desktop
+    @media (min-width: 1024px) {
+        display: inherit;
+        width: 100%;
+    }
+}
+
+.DesktopHidden {
+    //Desktop
+    @media (min-width: 1024px) {
+        display: none !important;
+        
+    }
 }

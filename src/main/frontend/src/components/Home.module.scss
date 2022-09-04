@@ -1,0 +1,42 @@
+@use '../global-variables.scss' as *;
+.left{
+    float: left;
+    height: 100%;
+    img{
+        height: 100%;
+        width: auto;
+    }
+}
+.right{
+    float: right;
+    height: 100%;
+}
+
+.right, .left {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+
+    width: 90%;
+
+    //Desktop
+    @media (min-width: 1024px) {
+        display: inherit;
+        width: 40%;
+    }
+
+    h2{
+        font-size: 5rem;
+        font-family: $title;
+        text-decoration-line: underline;
+        color: $accent-color;
+        margin: 1rem auto;
+    }
+    p{
+        font-family: $mono;
+        font-size: 3rem;
+        margin: 1rem auto;
+        padding: 0;
+    }
+}

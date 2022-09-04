@@ -4,28 +4,27 @@
     color: $primary-color;
     display: block;
     font-family: $title;
-    font-size: 2.5rem;
+    font-size: 5rem;
     margin: 0 auto;
     text-align: center;
-    text-shadow: 0 0 0.5rem $secondary-color;
 }
 
 .erro {
     color: $accent-color;
     display: block;
     font-family: $mono;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     margin: 0 auto;
     text-align: center;
 }
 
 .container {
-    width: 100%;
+    width: 90%;
     height: fit-content;
     padding: 1em;
-    margin: 1em;
+    margin: 3em auto;
 
-    border-radius: 1em;
+    border-radius: 2em;
     box-shadow: 0 0 0.5em $primary-color;
 
     font-family: $text;
@@ -39,23 +38,12 @@
     }
 
     h2 {
-        font-size: 1.5rem;
+        font-size: 3rem;
         font-family: $title;
         color: $accent-color;
         text-shadow: 0 0 0.5rem $secondary-color;
         display: block;
         margin: 0 auto;
-        text-align: center;
-    }
-
-    p{
-        font-size: 1rem;
-        font-family: $text;
-        color: $primary-color;
-        text-shadow: 0 0 0.5rem $secondary-color;
-        display: block;
-        margin: 0 auto;
-        margin-top: 1em;
         text-align: center;
     }
 }
@@ -67,26 +55,27 @@
     justify-content: center;
     margin: 1em;
 
+
     label {
-        font-size: 1.5rem;
         font-family: $title;
         color: $primary-color;
         display: block;
         width: 80%;
         text-align: left;
+        font-size: 3rem;
     }
 
     input {
         width: 80%;
         height: 2em;
         margin: 0.5em;
-        padding: 0.5em;
+        padding: 0 0.5em;
         border: 0;
+        font-size: 3rem;
         border-radius: 0.5em;
         background: $secondary-color;
         color: $primary-color;
-        font-family: $mono;
-        font-size: 1rem;
+        font-family: $text;
         border: 0.1em solid $primary-color;
 
         &:focus {
@@ -105,7 +94,8 @@
         background: $accent-color;
         color: $primary-color;
         font-family: $text;
-        font-size: 2rem;
+        font-size: 3rem;
+        font-weight: bold;
         text-align: center;
     }
 }
@@ -120,11 +110,8 @@
 
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
 
         overflow-x: auto;
-        overflow-y: hidden;
 
         // desktop
         @media (min-width: 1024px) {
@@ -139,13 +126,12 @@
         }
 
         li {
-            width: 40%;
-            height: fit-content;
+            width: fit-content;
+            height: 300px;
 
-            margin: 0 0.5em;
-
-            font-size: 1.5rem;
+            margin: 0 0.5rem;
             font-family: $mono;
+            padding: 1em;
 
             border: 0.1em solid $primary-color;
             border-radius: 0.5em;
@@ -162,14 +148,14 @@
                 background: $accent-color;
                 color: $primary-color;
                 font-family: $text;
-                font-size: 2rem;
+                font-size: 4rem;
                 text-align: center;
             }
         }
     }
 
     p {
-        font-size: 1rem;
+        font-size: 2rem;
         font-family: $mono;
         color: $primary-color;
         display: block;

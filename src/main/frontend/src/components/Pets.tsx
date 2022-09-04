@@ -12,7 +12,7 @@ export default () => {
     const [nome, setNome] = React.useState<string>("");
     const [idade, setIdade] = React.useState<number>(0);
     const [peso, setPeso] = React.useState<number>(0);
-    const [cliente_id, setCliente_id] = React.useState<number>(0);
+    const [clienteSelecionado, setClienteSelecionado] = React.useState<Cliente | null>(null);
 
     const [animalSelecionado, setAnimalSelecionado] = React.useState<Animal | null>(null);
 
@@ -40,13 +40,13 @@ export default () => {
             setNome("");
             setIdade(0);
             setPeso(0);
-            setCliente_id(0);
+            setClienteSelecionado(null);
         } else {
             setAnimalSelecionado(animal);
             setNome(animal.nome);
             setIdade(animal.idade);
             setPeso(animal.peso);
-            setCliente_id(animal.cliente_id);
+            setClienteSelecionado(animal.cliente);
         }
     }
 
@@ -59,14 +59,14 @@ export default () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ nome, idade, peso, cliente_id })
+                body: JSON.stringify({ nome, idade, peso, cliente: clienteSelecionado })
             }).then(() => {
                 GetAnimais();
                 setAnimalSelecionado(null);
                 setNome("");
                 setIdade(0);
                 setPeso(0);
-                setCliente_id(0);
+                setClienteSelecionado(null);
             });
         }
         else {
@@ -76,13 +76,13 @@ export default () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ nome, idade, peso, cliente_id })
+                body: JSON.stringify({ nome, idade, peso, cliente: clienteSelecionado })
             }).then(() => {
                 GetAnimais();
                 setNome("");
                 setIdade(0);
                 setPeso(0);
-                setCliente_id(0);
+                setClienteSelecionado(null);
             });
         }
     }
@@ -126,10 +126,7 @@ export default () => {
                                                             Peso: {animal.peso} kg
                                                         </p>
                                                         <p>
-                                                            Dono do Pet: {clientes.find(cliente => {
-                                                                console.log(cliente.id, animal.cliente_id);
-                                                                return cliente.id === animal.cliente_id
-                                                            })?.nome}
+                                                            Dono do Pet: {animal.cliente.nome}
                                                         </p>
                                                         <button onClick={() => handleSelecionarAnimal(animal)}>
                                                             {
@@ -189,25 +186,25 @@ export default () => {
                     </div>
                     <div className={style.formGroup}>
                         <label htmlFor="cliente">Dono do Pet</label>
-                        <div className={style.lista}>
-                            <ul>
-                                {
-                                    clientes.map(cliente => (
-                                        <li key={cliente.id}>
-                                            <input
-                                                type="radio"
-                                                id={cliente.id.toString()}
-                                                name="cliente"
-                                                value={cliente.id}
-                                                onChange={e => setCliente_id(Number(e.target.value))}
-                                                style={{ boxShadow: "none" }}
-                                                checked={cliente.id === cliente_id}
-                                            />
-                                            <label htmlFor={cliente.id.toString()}>{cliente.nome}</label>
-                                        </li>
-                                    ))
-                                }
-                            </ul>
+                            <div className={style.lista}>
+                                <ul>
+                                    {
+                                        clientes.map(cliente => (
+                                            <li key={cliente.id}>
+                                                <input
+                                                    type="radio"
+                                                    id={cliente.id.toString()}
+                                                    name="cliente"
+                                                    value={cliente.id}
+                                                    onChange={e => setClienteSelecionado(cliente)}
+                                                    style={{ boxShadow: "none" }}
+                                                    checked={cliente.id === clienteSelecionado?.id}
+                                                />
+                                                <label htmlFor={cliente.id.toString()}>{cliente.nome}</label>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
                         </div>
                     </div>
                     <div className={style.formGroup}>
@@ -235,7 +232,7 @@ export default () => {
                                         setNome("");
                                         setIdade(0);
                                         setPeso(0);
-                                        setCliente_id(0);
+                                        setClienteSelecionado(null);
                                     } else {
                                         setError("Não foi possível excluir o pet");
                                     }
