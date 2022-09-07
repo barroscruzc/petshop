@@ -6,9 +6,6 @@ import style from "./Page.module.scss";
 export default () => {
     const [animais, setAnimais] = React.useState<Animal[]>([]);
     const [clientes, setClientes] = React.useState<Cliente[]>([]);
-    const [ordemServico, setOrdemServico] = React.useState<OrdemServico[]>([]);
-    const [ordemServicoSelecionado, setOrdemServicoSelecionado] = React.useState<OrdemServico | null>(null);
-    const [loading, setLoading] = React.useState<boolean>(true);
     const [error, setError] = React.useState<string>("");
 
     const [cliente, setCliente] = React.useState<null | Cliente>(null);
@@ -53,7 +50,6 @@ export default () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setLoading(true);
         try {
             // convert date from yyyy-mm-dd to dd-mm-yyyy
             const dataFormatada = `${data.slice(8, 10)}-${data.slice(5, 7)}-${data.slice(0, 4)}`;
@@ -72,15 +68,23 @@ export default () => {
                     animal,
                 }),
             });
-            if (response.status === 201) {
-                setOrdemServicoSelecionado(await response.json());
+            if (response.ok) {
+                setError("Atendimento cadastrado com sucesso!");
             } else {
-                setError("Erro ao cadastrar atendimento");
-            }
+                setError("Erro ao salvar");
+            }        
         }
         catch (e: any) {
             setError(e.message);
         }
+        // Clear form
+        setCliente(null);
+        setAnimal(null);
+        setValor(25);
+        setData(new Date().toISOString().slice(0, 10));
+        setDescricao("Check-up de rotina");
+        setHora_entrada("08:00");
+        setHora_retirada("18:00");
     }
 
     return (
@@ -90,41 +94,7 @@ export default () => {
                 {error}
             </div>
             <div className={style.container}>
-                {loading ? <div className={style.loading}>Carregando...</div> :
-                    <>
-                        {
-                            ordemServico.length === 0 ? <h2>Nenhum atendimento cadastrado</h2> :
-                                <table className={style.tabela}>
-                                    <thead>
-                                        <tr>
-                                            <th>Cliente</th>
-                                            <th>Animal</th>
-                                            <th>Valor</th>
-                                            <th>Data</th>
-                                            <th>Descrição</th>
-                                            <th>Hora Entrada</th>
-                                            <th>Hora Retirada</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {ordemServico.map((ordemServico) => (
-                                            <tr key={ordemServico.codigo}>
-                                                <td>{ordemServico.cliente.id}</td>
-                                                <td>{ordemServico.animal.id}</td>
-                                                <td>{ordemServico.valor}</td>
-                                                <td>{ordemServico.data}</td>
-                                                <td>{ordemServico.descricao}</td>
-                                                <td>{ordemServico.hora_entrada}</td>
-                                                <td>{ordemServico.hora_retirada}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                        }
-                    </>}
-            </div>
-            <div className={style.container}>
-                <h2>{ordemServicoSelecionado ? "Editar" : "Adicionar"} Atendimento</h2>
+                <h2>Adicionar Atendimento</h2>
                 <form onSubmit={handleSubmit}>
                     <div className={style.formGroup}>
                         <label htmlFor="id_cliente">Cliente</label>

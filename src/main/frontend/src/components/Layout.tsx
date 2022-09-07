@@ -27,6 +27,11 @@ export default ({ children }: { children: React.ReactNode }) => (
                         Atendimento
                     </Link>
                 </li>
+                <li>
+                    <Link to="/reports">
+                        Relatórios
+                    </Link>
+                </li>
             </ul>
         </header>
         <main>
