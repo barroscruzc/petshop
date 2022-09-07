@@ -12,12 +12,12 @@ export default () => {
     const [error, setError] = React.useState<string>("");
 
     const [cliente, setCliente] = React.useState<null | Cliente>(null);
-    const [id_animal, setId_animal] = React.useState<number>(0);
-    const [valor, setValor] = React.useState<number>(0);
-    const [data, setData] = React.useState<string>("");
-    const [descricao, setDescricao] = React.useState<string>("");
-    const [hora_entrada, setHora_entrada] = React.useState<string>("");
-    const [hora_retirada, setHora_retirada] = React.useState<string>("");
+    const [animal, setAnimal] = React.useState<null | Animal>(null);
+    const [valor, setValor] = React.useState<number>(25);
+    const [data, setData] = React.useState<string>( new Date().toISOString().slice(0, 10) );
+    const [descricao, setDescricao] = React.useState<string>("Check-up de rotina");
+    const [hora_entrada, setHora_entrada] = React.useState<string>("08:00");
+    const [hora_retirada, setHora_retirada] = React.useState<string>("18:00");
 
     const getAnimais = async () => {
         try {
@@ -55,19 +55,21 @@ export default () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:8080/petshop/ordemServico", {
+            // convert date from yyyy-mm-dd to dd-mm-yyyy
+            const dataFormatada = `${data.slice(8, 10)}-${data.slice(5, 7)}-${data.slice(0, 4)}`;
+            const response = await fetch("http://localhost:8080/petshop/ordemservico", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    cliente_id: cliente?.id,
-                    valor: valor,
-                    data: data,
-                    descricao: descricao,
-                    hora_entrada: hora_entrada,
-                    hora_retirada: hora_retirada,
-                    animal_id: id_animal,
+                    cliente,
+                    valor,
+                    data: dataFormatada,
+                    descricao,
+                    hora_entrada,
+                    hora_retirada,
+                    animal,
                 }),
             });
             if (response.status === 201) {
@@ -106,9 +108,9 @@ export default () => {
                                     </thead>
                                     <tbody>
                                         {ordemServico.map((ordemServico) => (
-                                            <tr key={ordemServico.id_ordem_servico}>
-                                                <td>{ordemServico.id_cliente}</td>
-                                                <td>{ordemServico.id_animal}</td>
+                                            <tr key={ordemServico.codigo}>
+                                                <td>{ordemServico.cliente.id}</td>
+                                                <td>{ordemServico.animal.id}</td>
                                                 <td>{ordemServico.valor}</td>
                                                 <td>{ordemServico.data}</td>
                                                 <td>{ordemServico.descricao}</td>
@@ -154,7 +156,7 @@ export default () => {
                         </div>
                     </div>
                     {
-                        (cliente && cliente?.animais?.length > 0) ?
+                        (cliente && cliente.animais.length > 0) ?
                             (
                                 <>
                                     <div className={style.formGroup}>
@@ -175,9 +177,9 @@ export default () => {
                                                                     id={elem.id.toString()}
                                                                     name="animal"
                                                                     value={elem.id}
-                                                                    onChange={e => setId_animal(elem.id)}
+                                                                    onChange={e => setAnimal(elem)}
                                                                     style={{ boxShadow: "none" }}
-                                                                    checked={elem.id === id_animal}
+                                                                    checked={elem.id === animal?.id}
                                                                 />
                                                             </div>
                                                         </li>
@@ -207,7 +209,7 @@ export default () => {
                                         <input type="time" name="hora_retirada" id="hora_retirada" value={hora_retirada} onChange={(e) => setHora_retirada(e.target.value)} />
                                     </div>
                                     <div className={style.formGroup}>
-                                        <button type="submit">{ordemServicoSelecionado ? "Editar" : "Adicionar"}</button>
+                                        <button type="submit">{"Criar novo Atendimento"}</button>
                                     </div>
                                 </>
                             ) :

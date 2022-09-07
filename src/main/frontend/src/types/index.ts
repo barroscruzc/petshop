@@ -2,7 +2,7 @@ type Cliente = {
     id: number;
     nome: string;
     telefone: string;
-    animais?: Animal[];
+    animais: Animal[];
 };
 
 type Animal = {
