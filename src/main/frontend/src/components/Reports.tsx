@@ -46,9 +46,9 @@ const ClientesTable = (props: {
         return {
             nome: cliente.nome,
             telefone: cliente.telefone,
-            quantPets: cliente.animais?.length,
-            quantAtendimentos: props.atendimentos?.filter((atendimento) => atendimento.cliente?.id === cliente.id).length,
-            totalGasto: props.atendimentos?.filter((atendimento) => atendimento.cliente?.id === cliente.id).reduce((total, atendimento) => total + atendimento.valor, 0)
+            quantPets: cliente.animais?.length || 0,
+            quantAtendimentos: props.atendimentos?.filter((atendimento) => atendimento.cliente?.id === cliente.id)?.length || 0,
+            totalGasto: props.atendimentos?.filter((atendimento) => atendimento.cliente?.id === cliente.id).reduce((total, atendimento) => total + atendimento.valor, 0) || 0
         }
     }) || [];
 
