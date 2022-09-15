@@ -73,6 +73,19 @@ A imagem abaixo ilustra os relacionamentos entre as três tabelas do database.
 ![image](https://user-images.githubusercontent.com/93226440/190518899-e0e9e201-48cb-44a1-b4d7-f546f32edb09.png)
 
 
+## Autores
+
+**Cristhiane Barros da Cruz** - `Back-end`
+
+<a href="https://www.linkedin.com/in/barroscruzc" target="_blank"> LinkedIn </a> | <a href="https://www.github.com/barroscruzc" target="_blank"> GitHub </a>
+
+
+
+**Nicolas da Nery** - `Front-end`
+
+<a href="https://www.linkedin.com/in/nicolas-vycas/" target="_blank"> LinkedIn </a> | <a href="https://github.com/tomast1337" target="_blank"> GitHub </a>
+
+
 ## Stacks
 
 **Back-end**: 
