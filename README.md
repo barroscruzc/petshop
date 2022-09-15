@@ -1,27 +1,18 @@
 # Petshop
-Projeto desenvolvido durante o Bootcamp **If Black, Then Code (IBM & Gama Academy)**, com a finalidade de testar a habilidade no uso dos verbos e retornos de uma API Rest.
+O projeto começou a ser desenvolvido por **Cristhiane da Cruz** durante o Bootcamp *If Black, Then Code (IBM & Gama Academy)*, com a finalidade de testar a habilidade no uso dos verbos e retornos de uma API Rest. Após o término do desafio, o front-end em React foi desenvolvido por Nicolas da Nery. Estamos implementando novas funcionalidades à aplicação.
 
-## Desafio
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 
-Criar uma API com Spring Boot para uma empresa de Banho&Tosa com as seguintes entidades:
 
-1. Cliente - atributos mínimos: 
-  - nome
-  - telefone
+## Sobre o Desafio
+
+A proposta inicial era criar uma API com Spring Boot para uma empresa de Banho&Tosa com as seguintes entidades:
+
+1. Cliente - atributos mínimos: nome e telefone.
   
-2. Animal - atributos mínimos: 
-  - nome 
-  - idade
-  - peso 
-  - id_cliente
+2. Animal - atributos mínimos: nome, idade, peso e id_cliente.
   
-3. OrdemServico – atributos mínimos: 
-  - id_cliente 
-  - valor 
-  - hora_entrada
-  - hora_retirada
-  
-Após a conclusão do desafio proposto, foi implementado o front-end da aplicação em React.
+3. OrdemServico – atributos mínimos: id_cliente, valor, hora_entrada e hora_retirada.
   
 ## **Como rodar o projeto**
 ### **Preparando o ambiente**
