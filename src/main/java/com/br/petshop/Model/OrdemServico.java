@@ -14,98 +14,100 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name="ordem_servico")
+@Table(name = "ordem_servico")
 public class OrdemServico {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="codigo")
-	private Integer codigo;
-	
-	@ManyToOne
-	@JoinColumn(name="cliente_id", nullable = false)
-	@JsonIgnoreProperties("animais")
-	private Cliente cliente;
-	
-	@Column(name="valor", nullable = false)
-	private BigDecimal valor;
-	
-	@Column(name="data", nullable = false)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone="GMT")
-	private LocalDate data;
-	
-	@Column(name="descricao", length=100)
-	private String descricao;
-	
-	@Column(name="hora_entrada", nullable = false)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone="GMT")
-	private LocalTime hora_entrada;
-	
-	@Column(name="hora_retirada", nullable=false)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone="GMT")
-	private LocalTime hora_retirada;
-	
-	@ManyToOne
-	@JoinColumn(name="animal_id", nullable=false)
-	private Animal animal;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "codigo")
+    private Integer codigo;
 
-	public Integer getCodigo() {
-		return codigo;
-	}
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
 
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
-	}
+    @Column(name = "valor", nullable = false)
+    private BigDecimal valor;
 
-	public Cliente getCliente() {
-		return cliente;
-	}
+    @Column(name = "data", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "GMT")
+    private LocalDate data;
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+    @Column(name = "descricao", length = 100)
+    private String descricao;
 
-	public BigDecimal getValor() {
-		return valor;
-	}
+    @Column(name = "hora_entrada", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "GMT")
+    private LocalTime hora_entrada;
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
+    @Column(name = "hora_retirada", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm", timezone = "GMT")
+    private LocalTime hora_retirada;
 
-	public LocalDate getData() {
-		return data;
-	}
+    @ManyToOne
+    @JoinColumn(name = "animal_id", nullable = false)
+    private Animal animal;
 
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
+    public Animal getAnimal() {
+        return animal;
+    }
 
-	public LocalTime getHora_entrada() {
-		return hora_entrada;
-	}
+    public Integer getCodigo() {
+        return codigo;
+    }
 
-	public void setHora_entrada(LocalTime hora_entrada) {
-		this.hora_entrada = hora_entrada;
-	}
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
 
-	public LocalTime getHora_retirada() {
-		return hora_retirada;
-	}
+    public Cliente getCliente() {
+        return cliente;
+    }
 
-	public void setHora_retirada(LocalTime hora_retirada) {
-		this.hora_retirada = hora_retirada;
-	}
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
-	public String getDescricao() {
-		return descricao;
-	}
+    public BigDecimal getValor() {
+        return valor;
+    }
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-	
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public LocalTime getHora_entrada() {
+        return hora_entrada;
+    }
+
+    public void setHora_entrada(LocalTime hora_entrada) {
+        this.hora_entrada = hora_entrada;
+    }
+
+    public LocalTime getHora_retirada() {
+        return hora_retirada;
+    }
+
+    public void setHora_retirada(LocalTime hora_retirada) {
+        this.hora_retirada = hora_retirada;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
 }

@@ -9,69 +9,66 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
-@Table(name="animal")
+@Table(name = "animal")
 public class Animal {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private Integer id;
-	
-	@Column(name="nome", length=50)
-	private String nome;
-	
-	@Column(name="idade")
-	private Integer idade;
-	
-	@Column(name="peso")
-	private Integer peso;
-	
-	@ManyToOne
-	@JoinColumn(name="cliente_id")
-	@JsonIgnoreProperties("animais")
-	private Cliente cliente;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+    @Column(name = "nome", length = 50)
+    private String nome;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "idade")
+    private Integer idade;
 
-	public String getNome() {
-		return nome;
-	}
+    @Column(name = "peso")
+    private Integer peso;
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
-	public Integer getIdade() {
-		return idade;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setIdade(Integer idade) {
-		this.idade = idade;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public Integer getPeso() {
-		return peso;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setPeso(Integer peso) {
-		this.peso = peso;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public Cliente getCliente() {
-		return cliente;
-	}
+    public Integer getIdade() {
+        return idade;
+    }
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
+    public Integer getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Integer peso) {
+        this.peso = peso;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
 }

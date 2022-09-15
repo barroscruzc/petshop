@@ -1,0 +1,141 @@
+@use '../global-variables.scss' as *;
+
+.layout {
+    header {
+        background-color: $secondary-color;
+        margin-top: 0;
+        border-bottom: 0.5rem solid $primary-color;
+        border-radius: 0 0 2em 2em;
+        padding: 0 0 1rem 0;
+
+        position: relative;
+        width: 100vw;
+
+        // desktop
+        @media (min-width: 1024px) {
+            width: 80vw;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: $accent-color;
+            display: block;
+            font-size: 4rem;
+            margin: 0px auto 10px auto;
+            text-align: center;
+            font-family: $title;
+            text-decoration-line: underline;
+        }
+
+        ul {
+
+            list-style-type: none;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            width: 100%;
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin: 0 .5rem;
+                font-size: 2rem;
+                font-family: $mono;
+
+                // desktop
+                @media (min-width: 1024px) {
+                    font-size: 1rem;
+                }
+
+                a {
+                    color: $primary-color;
+                    text-decoration: none;
+                    border: 0.2rem solid $primary-color;
+                    border-radius: 0.5rem;
+                    padding: 0.5rem;
+
+                    &:hover {
+                        color: $accent-color;
+                        border: 0.2rem solid $accent-color;
+                    }
+                    
+                }
+            }
+        }
+    }
+
+    main {
+        padding: 1rem;
+        height: fit-content;
+        min-height: 60vh;
+    }
+
+    footer {
+        position: relative;
+        width: 100vw;
+        margin-top: auto;
+        margin-bottom: 0;
+
+        // desktop
+        @media (min-width: 1024px) {
+            width: 80vw;
+            margin: 0 auto;
+        }
+
+        padding: .1rem;
+        background-color: $secondary-color;
+        color: $accent-color;
+        border-top: 0.5rem solid $primary-color;
+        border-bottom: 0.5rem solid $primary-color;
+
+
+        p {
+            font-size: 3em;
+            display: block;
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            font-family: $text;
+
+            // desktop
+            @media (min-width: 1024px) {
+                font-size: 2em;
+            }
+        }
+
+        .links {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            width: 50%;
+            margin: 0 auto;
+            margin-bottom: 2rem;
+            padding: 0;
+
+            // desktop
+            @media (min-width: 1024px) {
+                width: 30%;
+            }
+
+            a {
+                img {
+                    width: 2.5rem;
+                    aspect-ratio: 1/1;
+
+                    // desktop
+                    @media (min-width: 1024px) {
+                        width: 2rem;
+                    }
+                }
+
+                margin: 0 1rem;
+            }
+
+        }
+
+
+    }
+}

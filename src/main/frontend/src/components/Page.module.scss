@@ -1,0 +1,223 @@
+@use '../global-variables.scss' as *;
+
+.titulo {
+    color: $primary-color;
+    display: block;
+    font-family: $title;
+    font-size: 5rem;
+    margin: 0 auto;
+    text-align: center;
+
+    // desktop
+    @media (min-width: 1024px) {
+        font-size: 3rem;
+    }
+}
+
+.erro {
+    color: $accent-color;
+    display: block;
+    font-family: $mono;
+    font-size: 2.5rem;
+    margin: 0 auto;
+    text-align: center;
+
+    // desktop
+    @media (min-width: 1024px) {
+        font-size: 2rem;
+    }
+}
+
+.container {
+    width: 90%;
+    height: fit-content;
+    padding: 1em;
+    margin: 3em auto;
+
+    border-radius: 2em;
+    box-shadow: 0 0 0.5em $primary-color;
+
+    font-family: $text;
+    color: $primary-color;
+    background: $secondary-color;
+
+    // desktop
+    @media (min-width: 1024px) {
+        width: 50%;
+        margin: 1em auto;
+    }
+
+    h2 {
+        font-size: 3rem;
+        font-family: $title;
+        color: $accent-color;
+        text-shadow: 0 0 0.5rem $secondary-color;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+
+        // desktop
+        @media (min-width: 1024px) {
+            font-size: 2rem;
+        }
+    }
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1em;
+
+
+    label {
+        font-family: $title;
+        color: $primary-color;
+        display: block;
+        width: 80%;
+        text-align: left;
+        font-size: 3rem;
+
+        // desktop
+        @media (min-width: 1024px) {
+            font-size: 2rem;
+        }
+    }
+
+    input {
+        width: 80%;
+        height: 2em;
+        margin: 0.5em;
+        padding: 0 0.5em;
+        border: 0;
+        font-size: 3rem;
+        border-radius: 0.5em;
+        background: $secondary-color;
+        color: $primary-color;
+        font-family: $text;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0.5rem $accent-color;
+        }
+
+        // desktop
+        @media (min-width: 1024px) {
+            font-size: 1.5rem;
+        }
+    }
+
+    button {
+        width: fit-content;
+        height: 2em;
+        margin: 0.1em;
+        padding: 0.1em;
+        border: 0;
+        border-radius: 0.5em;
+        background: $accent-color;
+        color: $primary-color;
+        font-family: $text;
+        font-size: 3rem;
+        font-weight: bold;
+        text-align: center;
+
+        // desktop
+        @media (min-width: 1024px) {
+            font-size: 2rem;
+        }
+    }
+}
+
+.lista {
+    ul {
+        width: 90;
+        height: fit-content;
+        margin: 0 auto;
+
+        list-style-type: none;
+
+        display: flex;
+        flex-direction: row;
+
+        overflow-x: auto;
+
+        // desktop
+        @media (min-width: 1024px) {
+            &::-webkit-scrollbar {
+                background: none;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: $accent-color;
+                border-radius: 0.5em;
+            }
+        }
+
+        li {
+            .card {
+                width: 40rem;
+                height: fit-content;
+                margin: 0;
+                height: fit-content;
+                margin: 0.5em;
+                padding: 0.5em;
+                font-family: $text;
+
+                // desktop
+                @media (min-width: 1024px) {
+                    width: 20rem;
+                }
+
+                button {
+                    background: $accent-color;
+                    color: $primary-color;
+                    border: none;
+                    font-family: $text;
+                    font-size: 4rem;
+                    width: 100%;
+                    text-align: center;
+                    // desktop
+                    @media (min-width: 1024px) {
+                        font-size: 2rem;
+                    }
+                }
+
+                p {
+                    font-size: 2rem;
+                    font-family: $mono;
+                    color: $primary-color;
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                    margin: 0em;
+                    // desktop
+                    @media (min-width: 1024px) {
+                        font-size: 1rem;
+                    }
+                }
+            }
+            .radioType{
+                margin: 1em;
+                width: 20em;
+                input{
+                    display: block;
+                    width: 1em;
+                    aspect-ratio: 1/1;
+                    margin: 0 auto;
+                }
+                label{
+                    font-size: 2rem;
+                    font-family: $mono;
+                    color: $primary-color;
+                    text-align: center;
+                    margin: 0em;
+                    // desktop
+                    @media (min-width: 1024px) {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}

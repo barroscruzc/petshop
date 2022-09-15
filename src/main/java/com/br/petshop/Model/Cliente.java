@@ -11,57 +11,57 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 
 @Entity
-@Table(name="cliente")
+@Table(name = "cliente")
 public class Cliente {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private Integer id;
-	
-	@Column(name="nome", length = 100, nullable=false)
-	private String nome;
-	
-	@Column(name = "telefone", length=13, nullable=false)
-	private String telefone;
-	
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
-	@JsonIgnoreProperties(value={"cliente"}, allowSetters = true)
-	private List<Animal> animais;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
 
-	public Integer getId() {
-		return id;
-	}
+    @Column(name = "nome", length = 100, nullable = false)
+    private String nome;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @Column(name = "telefone", length = 13, nullable = false)
+    private String telefone;
 
-	public String getNome() {
-		return nome;
-	}
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
+    @JsonIncludeProperties("id")
+    private List<Animal> animais;
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public List<Animal> getAnimais() {
-		return animais;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setAnimais(List<Animal> animais) {
-		this.animais = animais;
-	}
-	
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public List<Animal> getAnimais() {
+        return animais;
+    }
+
+    public void setAnimais(List<Animal> animais) {
+        this.animais = animais;
+    }
+
 }
